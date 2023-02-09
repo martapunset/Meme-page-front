@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
   Layout,
   AllMemes,
@@ -8,14 +9,17 @@ import {
 } from "../pages";
 
 export const Router = () => {
+  const { isAuthenticated } = useAuth0();
   return (
     <>
+      
       <Routes>
-        <Route index element={<Layout />}>
+ 
+        <Route element={<Layout />}>
           <Route path="/" element={<AllMemes />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/upload" element={<UploadPage />} />
-          <Route path="/:id" element={<MemeDetailPage />} />
+      
+          <Route path="/upload" element= {<UploadPage />}/>
+          <Route path="/meme/:id" element={<MemeDetailPage />} />
         </Route>
       </Routes>
     </>

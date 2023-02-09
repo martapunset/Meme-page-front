@@ -1,12 +1,15 @@
+import "./App.css";
+import { MemesProvider } from "./MemesContext/MemesProvider";
 
-import './App.css';
-
-import { Layout } from './pages';
+import { Layout } from "./pages";
+import { Router } from "./router/Router";
 
 function App() {
   return (
     <div className="App">
-      <App />
+      <MemesProvider>
+        <Router />
+        </MemesProvider>
     </div>
   );
 }
