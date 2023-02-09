@@ -21,18 +21,20 @@ export const UploadPage = () => {
     handleSubmit,
     formState: { errors, isSubmitted },
   } = useForm({
-    //defaultValues: user,
+
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+ 
     const user = JSON.parse(localStorage.getItem("user"));
     const { _id } = user;
-    // const userData = { _id, ...data };
+   
     const { category, title, url } = data;
-    console.log(category, title, url);
+
     const memeData = { category, title, url };
     const formData = new FormData();
+
+
     if (data.file) formData.append("file", data.file[0]);
 
     formData.append("object", JSON.stringify(memeData));
@@ -95,15 +97,3 @@ const UploadForm = styled.form`
   //background-color: black;
 `;
 
-function FullWidthTextField() {
-  return (
-    <Box
-      sx={{
-        width: 500,
-        maxWidth: "100%",
-      }}
-    >
-      <TextField fullWidth label="File URL" id="fullWidth" />
-    </Box>
-  );
-}
