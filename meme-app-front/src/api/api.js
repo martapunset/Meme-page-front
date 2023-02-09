@@ -46,7 +46,8 @@ export const getMemeById = async (id) => {           //GET
 
     const resp = await fetch(url);
     const apiData = await resp.json();
-    return apiData;
+    console.log(apiData)
+    return apiData.data;
   } catch (error) {
     console.log("Algo fallo en la api");
   }
