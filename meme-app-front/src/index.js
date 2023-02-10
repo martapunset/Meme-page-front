@@ -9,19 +9,16 @@ import { store } from "./redux/store";
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-console.log(process.env.REACT_APP_AUTH0_DOMAIN)
-console.log(process.env.REACT_APP_AUTH0_CLIENT_ID)
-
 
 root.render(
   <Auth0Provider
-            domain={process.env.REACT_APP_AUTH0_DOMAIN}
+    domain={process.env.REACT_APP_AUTH0_DOMAIN}
     clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
-            //redirectUri={window.location.origin}
-            authorizationParams={{
-                  redirect_uri: window.location.origin
-                }}
-   // audience="https://localhost/4000/"
+    
+    authorizationParams={{
+      redirect_uri: window.location.origin,
+    }}
+    // audience="https://localhost/4000/"
   >
     <Provider store={store}>
       <BrowserRouter>

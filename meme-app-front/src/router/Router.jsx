@@ -12,13 +12,11 @@ export const Router = () => {
   const { isAuthenticated } = useAuth0();
   return (
     <>
-      
       <Routes>
- 
         <Route element={<Layout />}>
           <Route path="/" element={<AllMemes />} />
-      
-          <Route path="/upload" element= {<UploadPage />}/>
+
+          <Route path="/upload" element={<UploadPage />} />
           <Route path="/meme/:id" element={<MemeDetailPage />} />
         </Route>
       </Routes>

@@ -11,8 +11,6 @@ export const FilterBar = () => {
           <button onClick={() => setQuery("babies")}>Babies</button>
           <button onClick={() => setQuery("cars")}>Cars</button>
          
-
-
     </>
   )
 }
