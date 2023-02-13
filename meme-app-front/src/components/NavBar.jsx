@@ -27,6 +27,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { searchMemes } from "../api/api";
 import { MemesContext, MemesProvider } from "../MemesContext/MemesProvider";
 import { useContext } from "react";
+import { FilterBar } from "./FilterBar";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -62,7 +63,7 @@ const Search = styled("div")(({ theme }) => ({
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: "100%",
+  height: "80%",
   position: "absolute",
   pointerEvents: "none",
   display: "flex",
@@ -174,7 +175,7 @@ export const NavBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <ThemeProvider theme={darkTheme}>
-        <AppBar position="sticky">
+        <AppBar position="fixed">
           <Toolbar>
             <IconButton
               size="large"
@@ -206,8 +207,10 @@ export const NavBar = () => {
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
+       
 
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row"   justifyContent="flex-end" spacing={3}>
+            <FilterBar></FilterBar>
               <Link to="/upload">
                 <Item>Upload Memes</Item>
               </Link>

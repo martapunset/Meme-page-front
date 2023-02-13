@@ -58,16 +58,16 @@ export const Layout = () => {
       <div className="grid-container">
         <div className="header">
           {" "}
-          <NavBar></NavBar>
+          <NavBar>   </NavBar>
         </div>
         <div className="menu">
-          <FilterBar></FilterBar>
+       
         </div>
         <div className="main">
           <Outlet />
         </div>
 
-        <div className="footer"> holi</div>
+        <div className="footer"> Footer</div>
       </div>
     </React.Fragment>
   );

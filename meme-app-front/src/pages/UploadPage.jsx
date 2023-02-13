@@ -14,26 +14,20 @@ export const UploadPage = () => {
   const { loginWithRedirect } = useAuth0();
   // const { _id } = user;
 
-  if (!isAuthenticated) loginWithRedirect();
-
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitted },
-  } = useForm({
-
-  });
+  } = useForm({});
 
   const onSubmit = async (data) => {
- 
     const user = JSON.parse(localStorage.getItem("user"));
     const { _id } = user;
-   
+
     const { category, title, url } = data;
 
     const memeData = { category, title, url };
     const formData = new FormData();
-
 
     if (data.file) formData.append("file", data.file[0]);
 
@@ -50,7 +44,7 @@ export const UploadPage = () => {
 
   return (
     <>
-      <h1> File Upload</h1>
+      <h2> Meme/ Gifs Upload</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <input type="text" placeholder="name" {...register("title")} />
@@ -96,4 +90,3 @@ const UploadForm = styled.form`
   // background: #18191e;
   //background-color: black;
 `;
-

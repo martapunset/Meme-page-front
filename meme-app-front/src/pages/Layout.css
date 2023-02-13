@@ -13,10 +13,10 @@
     'footer footer footer footer footer footer';
 
   /*background-color: #2196F3;*/
-  padding: 10px;
+ /* padding: 10px;*/
 
   margin: 0 auto;
-  max-width: 1500px;
+  max-width: 1200px;
   min-height:100vh
 
  
@@ -25,29 +25,31 @@
 .grid-container > div {
  /* background-color: rgba(255, 255, 255, 0.8);*/
   text-align: center;
-  padding: 20px 0;
+ /* padding: 20px 0;*/
   font-size: 30px;
 
 
 }
-.header{
-    height:100px
 
 
 
-}
+
+
 .menu{
-    background-color: rgb(133, 130, 127);
+    background-color: rgb(203, 205, 90);
 }
 
 .footer{
    
     bottom:0;
     height:100px;
-    background-color: brown;
+    background-color: rgb(149, 165, 42);
     width: 100%;
 }
 .main{
-    min-height:1200px;
-    background-color: white;
+  padding-top: 100px;
+    min-height:1000px;
+    background-color: black;
+
+    color: white;
 }
