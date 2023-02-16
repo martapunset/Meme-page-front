@@ -6,7 +6,7 @@ Cat Memes app with React
 
 This app has been built with MERN stack and some complements like Auth0 to manage the users information. 
 
-
+<br>
 
 ## 🚀 Getting Started
 
