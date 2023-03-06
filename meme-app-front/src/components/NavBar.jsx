@@ -28,6 +28,8 @@ import { searchMemes } from "../api/api";
 import { MemesContext, MemesProvider } from "../MemesContext/MemesProvider";
 import { useContext } from "react";
 import { FilterBar } from "./FilterBar";
+import { useSelector } from "react-redux";
+
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -86,6 +88,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 export const NavBar = () => {
+  const { user } = useSelector((state) => state.user)
+  console.log(">>>>>>>", user)
+ console.log(user?.email)
   const { isAuthenticated } = useAuth0();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -222,6 +227,10 @@ export const NavBar = () => {
               )}
             </Stack>
             <Box sx={{ flexGrow: 1 }} />
+            {user &&   <p>Welcome {user?.firstName}</p>}
+
+               
+           
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
                 size="large"

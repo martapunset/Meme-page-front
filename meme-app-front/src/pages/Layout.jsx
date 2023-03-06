@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import "./Layout.css";
 import { useDispatch } from "react-redux";
-import { login, logout } from "../redux/userSlice";
+import { login, logout } from "../redux/features/userSlice";
 import { Email } from "@mui/icons-material";
 import { postUserByEmail } from "../api/apiUsers";
 import { useEffect } from "react";
@@ -30,8 +30,6 @@ export const Layout = () => {
   console.log(isAuthenticated);
 
   useEffect(() => {
- 
-
     if (isAuthenticated) {
       const tempUser = {
         firstName: userAuth0.given_name || "default_name",
@@ -58,11 +56,9 @@ export const Layout = () => {
       <div className="grid-container">
         <div className="header">
           {" "}
-          <NavBar>   </NavBar>
+          <NavBar> </NavBar>
         </div>
-        <div className="menu">
-       
-        </div>
+        <div className="menu"></div>
         <div className="main">
           <Outlet />
         </div>

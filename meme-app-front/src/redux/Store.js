@@ -1,5 +1,5 @@
 import React from 'react'
-import userReducer from "./userSlice"
+import userReducer from "./features/userSlice"
 import { configureStore } from '@reduxjs/toolkit'
 
 

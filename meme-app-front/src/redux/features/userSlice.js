@@ -3,10 +3,11 @@ import {
 } from "@reduxjs/toolkit"
 import React from 'react'
 
+const initialState = null;
 export const userSlice=createSlice({
     name: "user",
     initialState: {
-        user:null,
+        user:initialState,
     },
     reducers: {
         login: (state, action) => {
@@ -14,7 +15,7 @@ export const userSlice=createSlice({
 
         },
         logout: (state) => {
-            state.user = null;
+            state.user = initialState;
         }
     }
   

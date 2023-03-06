@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { logout } from "../redux/userSlice";
+import { logout } from "../redux/features/userSlice";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
