@@ -38,55 +38,116 @@ export const UploadPage = () => {
       body: formData,
     });
     const datares = await res.json();
-    console.log(datares);
-    //alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+
+    alert(JSON.stringify(`${res.message}, status: ${res.status}`));
+    if (res.status === 200) navigate("/");
   };
 
   return (
     <>
-      <h2> Meme/ Gifs Upload</h2>
+      <div>
+        <h1> Meme/ Gifs Upload</h1>
+      </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder="name" {...register("title")} />
-        <input type="text" placeholder="category" {...register("category")} />
-        <div className="uploadField">
-          <hr></hr>
+      <FlexContainer>
+        <UploadForm onSubmit={handleSubmit(onSubmit)}>
+          <Field>
+            <label>Choose a name</label>
+            <input type="text" placeholder="name" {...register("title")} />
+          </Field>
+          <Field>
+            <label>Choose a category</label>
 
-          <label>paste url</label>
-          <input type="text" {...register("url")} />
-        </div>
-
-        <div className="uploadField">
-          <label>Upload from your computer</label>
-
-          <input type="file" {...register("file")} />
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
+            <input
+              type="text"
+              placeholder="category"
+              {...register("category")}
+            />
+          </Field>
+          <div className="uploadField">
+            <Field>
+              <label>paste meme-s url here</label>
+              <input type="text" {...register("url")} />
+            </Field>
+          </div>
+          <h3>Upload from your computer</h3>
+          <Field className="uploadField">
+            <input type="file" {...register("file")} />
+          </Field>
+          <Field>
+            <Button type="submit">Submit</Button>
+          </Field>
+        </UploadForm>
+        <ImageContainer>
+          <img src="https://media.tenor.com/P5DB2iGAecsAAAAi/peach-cat.gif" />
+        </ImageContainer>
+      </FlexContainer>
     </>
   );
 };
 
+const ImageContainer = styled.div`
+  padding-top: 80px;
+  width: 300px;
+  height: 300px;
+`;
 const UploadForm = styled.form`
-  height: 200px;
-  max-width: 600x;
+  height: 300px;
+  max-width: 500x;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
   margin: 0 auto;
   align-items: center;
-  margin: 200px;
+  margin: 100px;
+  margin-top: 50px;
+`;
 
-  .uploadField {
-    height: 100px;
-    padding: 100px;
-    margin: 50px;
-    display: flex;
-    flex-direction: column;
+const Field = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  min-width: 430px;
+  margin: 5px 10px;
+
+  & > input {
+    margin: 0 10px;
+    width: 250px;
+    border-radius: 10px;
+    height: 30px;
+    padding: 8px;
+    border: 1px;
   }
+`;
 
-  // background: #18191e;
-  //background-color: black;
+const Button = styled.button`
+  background-color: #e061ba;
+  border: none;
+  color: #fff;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  height: 40px;
+  align-items: center;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #e692da;
+  }
+`;
+
+const FlexContainer = styled.div`
+  padding-top: 50px;
+  width: 1000px;
+  height: 100%;
+  display: flex;
+  flex-direction: ${({ direction }) => direction || "row"};
+  justify-content: ${({ justify }) => justify || "flex-start"};
+  align-items: ${({ align }) => align || "flex-start"};
 `;

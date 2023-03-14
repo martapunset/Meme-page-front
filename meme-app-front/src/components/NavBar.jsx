@@ -142,6 +142,12 @@ export const NavBar = () => {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+              {isAuthenticated ? (
+                <LogoutButton></LogoutButton>
+              ) : (
+                <LoginButton>Login</LoginButton>
+              )}</MenuItem>
     </Menu>
   );
 
@@ -203,7 +209,7 @@ export const NavBar = () => {
             <Search>
               <SearchIconWrapper>
                 <SearchIcon type="submit">
-                  <button></button>
+         
                 </SearchIcon>
               </SearchIconWrapper>
               <StyledInputBase
@@ -220,11 +226,6 @@ export const NavBar = () => {
                 <Item>Upload Memes</Item>
               </Link>
 
-              {isAuthenticated ? (
-                <LogoutButton></LogoutButton>
-              ) : (
-                <LoginButton>Login</LoginButton>
-              )}
             </Stack>
             <Box sx={{ flexGrow: 1 }} />
             {user &&   <p>Welcome {user?.firstName}</p>}
