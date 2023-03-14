@@ -1,19 +1,21 @@
 import {useContext} from "react";
 import { MemesContext } from "../MemesContext/MemesProvider";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 
 export const FilterBar = () => {
-  
-    const { query, setQuery } = useContext(MemesContext)
+  const navigate = useNavigate();
+  const { query, setQuery } = useContext(MemesContext)
     
   return (  
     <>  
     <FlexContainer>
-       <Button onClick={() => setQuery("")}>All</Button>
-          <Button onClick={() => setQuery("search?title=cats")}>Cats</Button>
-          <Button onClick={() => setQuery("search?title=babies")}>Babies</Button>
-          <Button onClick={() => setQuery("search?title=cars")}>Cars</Button>
-          </FlexContainer>
+        <Button onClick={() => { setQuery(""); navigate("/")}}>All</Button>
+        <Button onClick={() => { setQuery("search?title=cats"); navigate("/")}}>Cats</Button>
+        <Button onClick={() => {setQuery("search?title=babies"); navigate("/")}}>Babies</Button>
+        <Button onClick={() => { setQuery("search?title=cars"); navigate("/")}}>Cars</Button>
+    </FlexContainer>
     </>
   )
 }

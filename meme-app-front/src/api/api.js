@@ -7,6 +7,7 @@ export const getMemes = async () => {
     const resp = await fetch(url);
     const apiData = await resp.json();
     console.log(apiData.data);
+ 
     return apiData.data;
   } catch (error) {
     console.log("Algo fallo en la api");
@@ -16,7 +17,7 @@ export const getMemes = async () => {
 export const searchMemes = async (query) => {
   //GET
   try {
-    const url = `http://localhost:4000/memes/search?title=${query}`;
+    const url = `http://localhost:4000/memes/${query}`;
 
     const resp = await fetch(url);
     const apiData = await resp.json();
