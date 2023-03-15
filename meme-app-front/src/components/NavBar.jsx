@@ -118,6 +118,7 @@ export const NavBar = () => {
   };
 
   const search = async () => {
+
     const searchResult = await searchMemes(query);
     console.log(searchResult, "holi");
   };
