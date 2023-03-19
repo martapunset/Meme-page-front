@@ -1,20 +1,18 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import { NavBar } from "../components";
+
+import { NavBar, Footer } from "../components";
 import { Outlet } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { useAuth0 } from "@auth0/auth0-react";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
+
 import "./Layout.css";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../redux/features/userSlice";
-import { Email } from "@mui/icons-material";
+
 import { postUserByEmail } from "../api/apiUsers";
 import { useEffect } from "react";
-import { FilterBar } from "../components/FilterBar";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -50,12 +48,11 @@ export const Layout = () => {
   }, [isAuthenticated]);
 
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
 
       <div className="grid-container">
         <div className="header">
-          {" "}
           <NavBar> </NavBar>
         </div>
         <div className="menu"></div>
@@ -63,8 +60,10 @@ export const Layout = () => {
           <Outlet />
         </div>
 
-        <div className="footer"> Footer</div>
+        <div className="footer">
+          <Footer></Footer>
+        </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };

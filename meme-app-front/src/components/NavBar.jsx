@@ -29,18 +29,19 @@ import { MemesContext, MemesProvider } from "../MemesContext/MemesProvider";
 import { useContext } from "react";
 import { FilterBar } from "./FilterBar";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
+import { DarkMode } from "@mui/icons-material";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#1976d2",
+      main: "#092138",
     },
   },
 });
 
 const Item = styled("button")(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  backgroundColor: theme.palette.mode === "dark" ? "#353333" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(2),
   textAlign: "center",
@@ -83,14 +84,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "70ch",
+      width: "50ch",
     },
   },
 }));
 export const NavBar = () => {
-  const { user } = useSelector((state) => state.user)
-  console.log(">>>>>>>", user)
- console.log(user?.email)
+  const navigate = useNavigate();
+
+  const { user } = useSelector((state) => state.user);
+
   const { isAuthenticated } = useAuth0();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -118,7 +120,6 @@ export const NavBar = () => {
   };
 
   const search = async () => {
-
     const searchResult = await searchMemes(query);
     console.log(searchResult, "holi");
   };
@@ -126,30 +127,34 @@ export const NavBar = () => {
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>
-              {isAuthenticated ? (
-                <LogoutButton></LogoutButton>
-              ) : (
-                <LoginButton>Login</LoginButton>
-              )}</MenuItem>
-    </Menu>
+    <>
+      <darkTheme></darkTheme>
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          {isAuthenticated ? (
+            <LogoutButton></LogoutButton>
+          ) : (
+            <LoginButton>Login</LoginButton>
+          )}
+        </MenuItem>
+      </Menu>
+    </>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -169,17 +174,45 @@ export const NavBar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
+      <MenuItem>
+        <span
+          onClick={() => {
+            setQuery("");
+            navigate("/");
+          }}
         >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
+          All Memes
+        </span>
+      </MenuItem>
+      <MenuItem>
+        <span
+          onClick={() => {
+            setQuery("search?title=cats");
+            navigate("/");
+          }}
+        >
+          Cats
+        </span>
+      </MenuItem>
+      <MenuItem>
+        <span
+          onClick={() => {
+            setQuery("search?title=babies");
+            navigate("/");
+          }}
+        >
+          Babies
+        </span>
+      </MenuItem>
+      <MenuItem>
+        <span
+          onClick={() => {
+            setQuery("search?title=cars");
+            navigate("/");
+          }}
+        >
+          Cars
+        </span>
       </MenuItem>
     </Menu>
   );
@@ -194,6 +227,7 @@ export const NavBar = () => {
               edge="start"
               color="inherit"
               aria-label="open drawer"
+              onClick={handleMobileMenuOpen}
               sx={{ mr: 3 }}
             >
               <MenuIcon />
@@ -209,9 +243,7 @@ export const NavBar = () => {
             </Typography>
             <Search>
               <SearchIconWrapper>
-                <SearchIcon type="submit">
-         
-                </SearchIcon>
+                <SearchIcon type="submit"></SearchIcon>
               </SearchIconWrapper>
               <StyledInputBase
                 onChange={(e) => setQuery(e.target.value)}
@@ -219,20 +251,17 @@ export const NavBar = () => {
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
-       
 
-            <Stack direction="row"   justifyContent="flex-end" spacing={3}>
-            <FilterBar></FilterBar>
+            <Stack direction="row" justifyContent="flex-end" spacing={3}>
+              <FilterBar></FilterBar>
+
               <Link to="/upload">
-                <Item>Upload Memes</Item>
+                <Item>Upload</Item>
               </Link>
-
             </Stack>
             <Box sx={{ flexGrow: 1 }} />
-            {user &&   <p>Welcome {user?.firstName}</p>}
+            {user && <p>Welcome {user?.firstName}</p>}
 
-               
-           
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
                 size="large"
@@ -244,18 +273,6 @@ export const NavBar = () => {
                 color="inherit"
               >
                 <AccountCircle />
-              </IconButton>
-            </Box>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
               </IconButton>
             </Box>
           </Toolbar>
