@@ -12,9 +12,7 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
+
 import { Stack } from "@mui/material";
 import ListItem from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -23,7 +21,7 @@ import { Link } from "react-router-dom";
 import { LoginButton } from "./LoginButton";
 import { LogoutButton } from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
-//import { useState } from 'react';
+import { useState } from 'react';
 import { searchMemes } from "../api/api";
 import { MemesContext, MemesProvider } from "../MemesContext/MemesProvider";
 import { useContext } from "react";
@@ -101,6 +99,7 @@ export const NavBar = () => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const { query, setQuery } = useContext(MemesContext);
+  const [search, setSearch] = useState("");
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -119,11 +118,13 @@ export const NavBar = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const search = async () => {
-    const searchResult = await searchMemes(query);
-    console.log(searchResult, "holi");
+  const searchFunction = async () => {
+    setQuery(search)
+ // const searchResult = await searchMemes(query);
+  
   };
-  if (query.length > 3) search();
+  if (search.length > 3) setQuery(search);
+  console.log(search)
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -197,7 +198,7 @@ export const NavBar = () => {
       <MenuItem>
         <span
           onClick={() => {
-            setQuery("search?title=babies");
+            setQuery("babies");
             navigate("/");
           }}
         >
@@ -246,7 +247,7 @@ export const NavBar = () => {
                 <SearchIcon type="submit"></SearchIcon>
               </SearchIconWrapper>
               <StyledInputBase
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search by meme's name..."
                 inputProps={{ "aria-label": "search" }}
               />

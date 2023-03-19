@@ -17,7 +17,7 @@ export const getMemes = async () => {
 export const searchMemes = async (query) => {
   //GET
   try {
-    const url = `http://localhost:4000/memes/search?${query}`;
+    const url = `http://localhost:4000/memes/search?title=${query}`;
 
     const resp = await fetch(url);
     const apiData = await resp.json();

@@ -20,7 +20,7 @@ export const FilterBar = (props) => {
         </Button>
         <Button
           onClick={() => {
-            setQuery("search?title=cats");
+            setQuery("cats");
             navigate("/");
           }}
         >
@@ -28,7 +28,7 @@ export const FilterBar = (props) => {
         </Button>
         <Button
           onClick={() => {
-            setQuery("search?title=babies");
+            setQuery("babies");
             navigate("/");
           }}
         >
@@ -36,7 +36,7 @@ export const FilterBar = (props) => {
         </Button>
         <Button
           onClick={() => {
-            setQuery("search?title=cars");
+            setQuery("cars");
             navigate("/");
           }}
         >
